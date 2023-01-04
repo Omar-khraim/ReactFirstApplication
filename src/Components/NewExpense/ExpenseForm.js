@@ -2,19 +2,18 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 
 function ExpenseForm(param) {
-  
-    // you can use adifferant state in the same file
-  const [enteredTitle , setEnteredTitle] = useState('');
-  const [enteredAmount, setEnteredAmount] = useState('');
-  const [enteredDate , setEnteredDate] = useState('');
+  // you can use adifferant state in the same file
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
 
   // this is the same of using differnet state but in this one you have one object and one state the obejct consist of all other values
   // the problem of this one that you have to update the whoel object each time you use it
-//   const [userInput, setUserInput] = useState({
-//     enteredTitle: "",
-//     enteredAmount: "",
-//     enteredDate: "",
-//   });
+  //   const [userInput, setUserInput] = useState({
+  //     enteredTitle: "",
+  //     enteredAmount: "",
+  //     enteredDate: "",
+  //   });
 
   function titleChangeHandler(event) {
     setEnteredTitle(event.target.value);
@@ -25,7 +24,6 @@ function ExpenseForm(param) {
     //   ...userInput,
     //   enteredTitle: event.target.value,
     // });
-
   }
 
   function amountChangeHandler(event) {
@@ -40,7 +38,6 @@ function ExpenseForm(param) {
     //   return { ...preState, enteredAmount: event.target.value };
     // });
 
-
     console.log(enteredAmount);
   }
 
@@ -51,24 +48,23 @@ function ExpenseForm(param) {
     //     ...userInput,
     //     enteredDate: event.target.value,
     //   });
-
   }
 
-  function onSubmitHndler(event){
+  function onSubmitHndler(event) {
     event.preventDefault();
     const expenseData = {
-        title : enteredTitle,
-        amount : enteredAmount,
-        date : new Date(enteredDate)
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
     };
 
+    // this will execute the function in the parent and send the data to it
+    param.onSaveExpenseData(expenseData);
 
-    // empty the state and be ready to fill the new data 
-    setEnteredAmount('');
-    setEnteredTitle('');
-    setEnteredDate('');
-
-console.log(expenseData);
+    // empty the state and be ready to fill the new data
+    setEnteredAmount("");
+    setEnteredTitle("");
+    setEnteredDate("");
   }
 
   return (
@@ -76,10 +72,11 @@ console.log(expenseData);
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
-          <input 
-          type="text" 
-          value={enteredTitle}
-          onChange={titleChangeHandler} />
+          <input
+            type="text"
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
