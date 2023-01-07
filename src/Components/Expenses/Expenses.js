@@ -8,6 +8,8 @@ function Expenses(param) {
 
   const [filterYear , setSelectedDate] = useState('2022');
   
+  const filteredExpenses = param.expenses.filter(x => x.date.getFullYear().toString() === filterYear);
+
   function selectDate(selectedYear) {
     setSelectedDate(selectedYear);
     // param.Expenses.filter(x=>x == new Date(selectDate));
@@ -17,17 +19,12 @@ function Expenses(param) {
 
   return (
     <div>
-      
-
       <Card className="expenses">
-      <ExpensesFilter selected={filterYear} onSelecteFilter={selectDate} />
+        <ExpensesFilter selected={filterYear} onSelecteFilter={selectDate} />
 
-      {
-        param.expenses.map(ex=> <ExpnseItem  
-            title={ex.title}
-          amount={ex.amount}
-          date={ex.date}/>)
-      }      
+        {filteredExpenses.map((ex) => (
+          <ExpnseItem key={ex.id} title={ex.title} amount={ex.amount} date={ex.date} />
+        ))}
       </Card>
     </div>
   );
