@@ -38,7 +38,7 @@ function ExpenseForm(param) {
     //   return { ...preState, enteredAmount: event.target.value };
     // });
 
-    console.log(enteredAmount);
+    
   }
 
   function dateChangeHandler(event) {
@@ -55,7 +55,7 @@ function ExpenseForm(param) {
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: new Date(enteredDate),
+      date: new Date(enteredDate + 'T00:00:00'),
     };
 
     // this will execute the function in the parent and send the data to it

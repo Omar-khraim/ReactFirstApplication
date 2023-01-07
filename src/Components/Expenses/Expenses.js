@@ -21,26 +21,13 @@ function Expenses(param) {
 
       <Card className="expenses">
       <ExpensesFilter selected={filterYear} onSelecteFilter={selectDate} />
-        <ExpnseItem
-          title={param.expenses[0].title}
-          amount={param.expenses[0].amount}
-          date={param.expenses[0].date}
-        />
-        <ExpnseItem
-          title={param.expenses[1].title}
-          amount={param.expenses[1].amount}
-          date={param.expenses[1].date}
-        />
-        <ExpnseItem
-          title={param.expenses[2].title}
-          amount={param.expenses[2].amount}
-          date={param.expenses[2].date}
-        />
-        <ExpnseItem
-          title={param.expenses[3].title}
-          amount={param.expenses[3].amount}
-          date={param.expenses[3].date}
-        />
+
+      {
+        param.expenses.map(ex=> <ExpnseItem  
+            title={ex.title}
+          amount={ex.amount}
+          date={ex.date}/>)
+      }      
       </Card>
     </div>
   );

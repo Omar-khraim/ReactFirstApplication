@@ -1,43 +1,54 @@
-// import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-import NewExpense from './Components/NewExpense/NewExpense';
-import Expenses from './Components/Expenses/Expenses';
+import React, { useState } from "react";
+import NewExpense from "./Components/NewExpense/NewExpense";
+import Expenses from "./Components/Expenses/Expenses";
 
-function expenseHandler(newExpense){
-  console.log('form App.js');
-  console.log(newExpense);
-}
+
+const intialExpenses = [
+  {
+    id: "e1",
+    title: "Toilet Paper",
+    amount: 94.12,
+    date: new Date(2020, 7, 14),
+  },
+  { 
+    id: "e2", 
+    title: "New TV",
+    amount: 799.49, 
+    date: new Date(2021, 2, 12) 
+  },
+  {
+    id: "e3",
+    title: "Car Insurance",
+    amount: 294.67,
+    date: new Date(2021, 2, 28),
+  },
+  {
+    id: "e4",
+    title: "New Desk (Wooden)",
+    amount: 450,
+    date: new Date(2021, 5, 12),
+  },
+];
 
 function App() {
+  
+  const [expenses, setExpenses] = useState(intialExpenses);
 
-  const expenses = [
-    {
-      id: "e1",
-      title: "Toilet Paper",
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-    },
-    { id: "e2", title: "New TV", amount: 799.49, date: new Date(2021, 2, 12) },
-    {
-      id: "e3",
-      title: "Car Insurance",
-      amount: 294.67,
-      date: new Date(2021, 2, 28),
-    },
-    {
-      id: "e4",
-      title: "New Desk (Wooden)",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-  ];
+  function expenseHandler(expense) {
+    setExpenses((preExpenses) => {
+      console.log([expense, ...preExpenses])
+      return [expense, ...preExpenses]
+    });
+
+    // console.log(expenses);
+  };
 
   return (
-
     <div>
-      <NewExpense onAddExpense={expenseHandler}/>
-      <Expenses expenses= {expenses}/>
+      <NewExpense onAddExpense={expenseHandler} />
+      <Expenses expenses={expenses} />
     </div>
   );
 }

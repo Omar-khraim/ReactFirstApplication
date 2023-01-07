@@ -4,12 +4,11 @@ import "./NewExpense.css";
 function NewExpense(param) {
 
   function saveExpenseData(formData) {
-    const expenseData = {
-      ...formData,
+    const expenseData = {      
       id: Math.random().toString(),
+      ...formData
     };
-    console.log(expenseData);
-    param.onAddExpense(formData);
+    param.onAddExpense(expenseData);
   }
 
   return (

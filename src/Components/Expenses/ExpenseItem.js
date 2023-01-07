@@ -18,7 +18,7 @@ const clickHnadler = ()=>{
       <Card className='expense-item'>
        <ExpenseDate date = {param.date} />
         <div className='expense-item__description'>
-          <h2>{title}</h2>
+          <h2>{param.title}</h2>
           <div className='expense-item__price '>${param.amount}</div>
         </div>   
         <button onClick={clickHnadler}>click to update title</button>   
